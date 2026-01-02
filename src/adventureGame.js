@@ -1,4 +1,4 @@
-const readline = require('readline');
+
 /*
 Adventure Game
 This game will be a text-based adventure game where the player will be able
@@ -14,31 +14,24 @@ console.log("Welcome to the Adventure Game!")
 //Add a welcome message
 console.log("Prepare yourself for an epic journey!");
 
-// Get plauer name using readline-sync
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
+const readline = require('readline-sync');
 
-
+let playerName = "";
 let playerHealth = 100;
 let playerGold = 20;
 let CurrentLocation = "Village";
 let gameRunning = true;
 let inventory = [];
 
-//create variable for plater satats
-function displayStats() {
-    console.log(`Health: ${playerHealth}`);
-    console.log(`Gold: ${playerGold}`);
-    console.log(`Location: ${CurrentLocation}`);
-    console.log(`Inventory: ${inventory.join(", ") || "Empty"}`);
-}
+console.log("=================================");
+console.log("       The Dragon's Quest        ");
+console.log("=================================");
+console.log("\nYour quest: Defeat the dragon in the mountains!");
 
-rl.question("What is your name, adventurer? ", (name) => {
-    console.log(`Welcome, ${name}! Your adventure begins now.`);
-    console.log("Starting gold: 20");
-  rl.close();
+// get player name
+playerName= readline.question("What is your name, adventurer? ");
+    console.log("Welcome," + playerName + "! Your adventure begins now.");
+    console.log("You starts with"+playerGold+"gold.");
+ 
    
-});
