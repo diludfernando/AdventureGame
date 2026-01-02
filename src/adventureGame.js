@@ -25,6 +25,7 @@ let gameRunning = true;
 let inventory = [];
 let weaponDamage=0;
 let monsterDefense = 5;
+let healingPotionsValue = 30;
 
 console.log("=================================");
 console.log("       The Dragon's Quest        ");
@@ -43,5 +44,8 @@ console.log("When you buy a sword, weapon damage will increase to 10!");
 
 console.log("Monster Defense: " + monsterDefense);
 console.log("Monsters can withstand some damage in combat!");
+
+console.log("Healing Potions Value: " + healingPotionsValue);
+console.log("A potion will restore 30 health!");
 
    
