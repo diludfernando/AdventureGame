@@ -23,6 +23,8 @@ let playerGold = 20;
 let CurrentLocation = "Village";
 let gameRunning = true;
 let inventory = [];
+let weaponDamage=0;
+let monsterDefense = 5;
 
 console.log("=================================");
 console.log("       The Dragon's Quest        ");
@@ -32,6 +34,14 @@ console.log("\nYour quest: Defeat the dragon in the mountains!");
 // get player name
 playerName= readline.question("What is your name, adventurer? ");
     console.log("Welcome," + playerName + "! Your adventure begins now.");
-    console.log("You starts with"+playerGold+"gold.");
+    console.log("You starts with "+playerGold+" gold.");
  
+
+
+console.log("Weapon Damage: " + weaponDamage);
+console.log("When you buy a sword, weapon damage will increase to 10!");
+
+console.log("Monster Defense: " + monsterDefense);
+console.log("Monsters can withstand some damage in combat!");
+
    
