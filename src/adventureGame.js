@@ -20,7 +20,7 @@ const readline = require('readline-sync');
 let playerName = "";
 let playerHealth = 100;
 let playerGold = 20;
-let CurrentLocation = "Village";
+let CurrentLocation = "VILLAGE";
 let gameRunning = true;
 let inventory = [];
 
@@ -51,18 +51,25 @@ console.log("=================================");
 console.log("\nYour quest: Defeat the dragon in the mountains!");
 
 // get player name
-playerName= readline.question("What is your name, adventurer? ");
-    console.log("Welcome," + playerName + "! Your adventure begins now.");
+playerName= readline.question("What is your name, adventurer? :  ");
+    console.log("Welcome, " + playerName + "! Your adventure begins now.");
     console.log("You starts with "+playerGold+" gold.");
+console.log("   ");
 
 
-if(CurrentLocation === "Village") {
-    console.log("You are in a peaceful village.");
+
+
+if(CurrentLocation === "VILLAGE") {
+    let firstVisit = true;
+console.log("============================================");
+console.log("       You are in a peaceful village       ");
+console.log("============================================");
     console.log("The blacksmith market is nearby.");
 }
 
 
 console.log("What would you like to go?");
+console.log("   ");
 console.log("1. Visit the blacksmith");
 console.log("2. Go to the market");
 console.log("3. Explore the forest");
@@ -70,17 +77,19 @@ console.log("4. Check your stats");
 console.log("5. Exit game");
 console.log("   ");
 
-
-
-let option = 0;
-option = readline.questionInt("Enter the number of your choice: ");
+// get player choice
+let input = readline.questionInt("Enter the number of your choice: ");
+// Convert input to number
+let option = Number(input);
 console.log("   ");
 
 switch(option) {
     case 1:
-        console.log("You visit the blacksmith");
-        CurrentLocation = "Blacksmith";
-        if(CurrentLocation === "Blacksmith") {
+        console.log("==========================");
+        console.log("You visit the Blacksmith");
+        console.log("==========================");
+        trackLocation = "Blacksmith";
+        if(trackLocation === "Blacksmith") {
             console.log("Blacksmiths is named Thorin " + playerName + "See the blacksmithshop with weapons and armor.");
             
 
@@ -91,11 +100,15 @@ switch(option) {
             console.log("3. Exit the game");
             console.log("   ");
 
-            let choice = 0;
-            choice = readline.questionInt("Please choose an option");
+            
+            let input= readline.questionInt("Please choose an option: ");
+            // Convert input to number
+            let choice =Number (input);
+
          
             if (choice === 1) {
                 console.log("return to village");
+                firstVisit = false;
 
         } else if (choice === 2) {
                 console.log("check the status");
@@ -106,17 +119,25 @@ switch(option) {
         break;}
         
     case 2:
+        console.log("=====================");
         console.log("You visit the market");
+        console.log("=====================");
         break;
     case 3:
+        console.log("=====================");
         console.log("You visit the forest");
+        console.log("=====================");
         break;
     case 4:
+        console.log("=======================");
         console.log("You cheacked your stats");
+        console.log("=======================");
         break;
 
     case 5:
+        console.log("===========================");
         console.log("You exit the game. Goodbye!");
+        console.log("===========================");
         gameRunning = false;
         break;
     default:
