@@ -36,7 +36,7 @@ let healingPotionsValue = 30;
 console.log("Healing Potions Value: " + healingPotionsValue);
 console.log("A potion will restore 30 health!");
 
-let trackLocation= "Village";
+let trackLocation= CurrentLocation
 let playTimes= true
 
 console.log("Current Location: " + trackLocation);
@@ -65,7 +65,7 @@ console.log("============================================");
 console.log("       You are in a peaceful village       ");
 console.log("============================================");
     console.log("The blacksmith market is nearby.");
-}
+
 
 
 console.log("What would you like to go?");
@@ -78,9 +78,9 @@ console.log("5. Exit game");
 console.log("   ");
 
 // get player choice
-let input = readline.questionInt("Enter the number of your choice: ");
-// Convert input to number
-let option = Number(input);
+let option = readline.questionInt("Enter the number of your choice: ");
+
+
 console.log("   ");
 
 switch(option) {
@@ -88,8 +88,8 @@ switch(option) {
         console.log("==========================");
         console.log("You visit the Blacksmith");
         console.log("==========================");
-        trackLocation = "Blacksmith";
-        if(trackLocation === "Blacksmith") {
+        CurrentLocation = "BLACKSMITH";
+        if(CurrentLocation === "BLACKSMITH") {
             console.log("Blacksmiths is named Thorin " + playerName + "See the blacksmithshop with weapons and armor.");
             
 
@@ -101,14 +101,12 @@ switch(option) {
             console.log("   ");
 
             
-            let input= readline.questionInt("Please choose an option: ");
-            // Convert input to number
-            let choice =Number (input);
-
-         
+            let choice= readline.questionInt("Please choose an option: ");
+    
             if (choice === 1) {
                 console.log("return to village");
                 firstVisit = false;
+                CurrentLocation = "VILLAGE";
 
         } else if (choice === 2) {
                 console.log("check the status");
@@ -122,11 +120,13 @@ switch(option) {
         console.log("=====================");
         console.log("You visit the market");
         console.log("=====================");
+        CurrentLocation = "MARKET";
         break;
     case 3:
         console.log("=====================");
         console.log("You visit the forest");
         console.log("=====================");
+        CurrentLocation = "FOREST";
         break;
     case 4:
         console.log("=======================");
@@ -142,6 +142,7 @@ switch(option) {
         break;
     default:
         console.log("Invalid option. Please choose again.");
+}
 }
 
 
