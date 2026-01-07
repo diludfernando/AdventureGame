@@ -171,15 +171,19 @@ if (CurrentLocation === "BLACKSMITH") {
             console.log("3. Exit the game");
             console.log("   ");
 
+        let Validechoice = false;
+
+        while(!Validechoice){
             try{
 
 
             let choice= readline.questionInt("Please choose an option: ");
 
                 if(choice <1 || choice> 4){
-                    throw new Error ("Invalide choise please enter number between 1 - 4 ");
+                    throw new Error (" Invalide choise please enter number between 1 - 4 ");
 
                 }
+                Validechoice = true;
 
             if (choice === 1) {
                 console.log("return to village");
@@ -189,6 +193,7 @@ if (CurrentLocation === "BLACKSMITH") {
         } else if (choice === 2) {
                 console.log("check the status");
                 displayStats();
+                Validechoice = false;
             }else if (choice === 3) {
                 console.log("exit the game");
                 gameRunning =false;
@@ -198,6 +203,7 @@ if (CurrentLocation === "BLACKSMITH") {
         }catch(error){
             console.log("erro"+error.message);
         }
+    }
       
  }  else if (CurrentLocation === "MARKET") {
     console.log("You are at the market. You can buy supplies here.");
@@ -209,6 +215,8 @@ if (CurrentLocation === "BLACKSMITH") {
             console.log("3. Exit the game");
             console.log("   ");
 
+            let valideMarketChoice = false;
+            while(!valideMarketChoice){
             try {
 
             let choice= readline.questionInt("Please choose an option: ");
@@ -216,7 +224,7 @@ if (CurrentLocation === "BLACKSMITH") {
                   if(choice<1 || choice >3){
                     throw new Error ("Inviled choice please choose a number between 1 - 3");
                 }
-
+                    valideMarketChoice = true;
 
             console.log("   ");
             if (choice === 1) {
@@ -227,6 +235,9 @@ if (CurrentLocation === "BLACKSMITH") {
         } else if (choice === 2) {
                 console.log("check the status");
                 displayStats();
+                valideMarketChoice = false;
+               
+            
             }else if (choice === 3) {
                 console.log("exit the game");
                 gameRunning =false;
@@ -236,6 +247,7 @@ if (CurrentLocation === "BLACKSMITH") {
             console.log("Error"+ error.message);
 
         }
+    }
         }else if (CurrentLocation === "FOREST") {
             console.log("You are in the forest. Be careful of monsters!");
             
