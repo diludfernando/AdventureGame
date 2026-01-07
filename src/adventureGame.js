@@ -36,6 +36,18 @@ function displayStats() {
    
 }
 
+function checkInventory() {
+   console.log("\n=== INVENTORY ===");
+   if (!hasWeapon && !hasPotion && !hasArmor) {
+       console.log("Your inventory is empty!");
+       return;
+   }
+   
+   if (hasWeapon) console.log("- Sword");
+   if (hasPotion) console.log("- Health Potion");
+   if (hasArmor) console.log("- Shield");
+}
+
 
 function displayInventory() {
     for (let slot = 1; slot <= 3; slot++) {
@@ -143,6 +155,40 @@ function move(choiceNum){
 return validMove;
 }
 
+
+function handleCombat(){
+    if(hasWeapon){
+        console.log("You have a sword! You attack!");
+        console.log("Victory! You founf 10 gold!")
+        playerGold+=10;
+        return true;
+    }else {
+        console.log("Witohut a weapon, you must retreat!")
+        updateHealth(-20);
+    }  
+}
+
+function updateHealth(amount){
+playerHealth +=amount;
+
+if (playerHealth > 100){
+    playerHealth = 100;
+    console.log("You're at full health ");
+}
+
+if(playerHealth<0){
+    playerHealth = 0;
+    console.log("You're gravely wounded!");
+
+}
+
+console.log("Health is now: "+ playerHealth);
+return playerHealth
+
+
+}
+
+
 // Main game loop
 while(gameRunning){
 showLocation();
@@ -168,13 +214,20 @@ while(!validChoice){
                 if (choiceNum <= 3) {
                     if (!move(choiceNum)) {
                         console.log("\nYou can't go there!");
+                    }else if(choiceNum===3){
+                        console.log("\nA monster appears!");
+                       if (!handleCombat()) {
+                           currentLocation = "village";
+
+
                     }
                 }
+            }
                 else if (choiceNum === 4) {
                     displayStats();
                 }
                 else if (choiceNum === 5) {
-                    displayInventory();
+                    checkInventory();
                 }
                 else if (choiceNum === 6) {
                     gameRunning = false;
