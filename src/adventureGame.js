@@ -28,6 +28,7 @@ let hasPotion = false;
 let hasArmor = false;
 
 function displayStats() {
+    console.log("Player Name: "+playerName);
     console.log("Health: " + playerHealth);
     console.log("Gold: " + playerGold);
     console.log("Location: " + CurrentLocation);
@@ -48,6 +49,8 @@ function displayInventory() {
                 }
             }
 }
+
+
 
 let weaponDamage=0;
 console.log("Weapon Damage: " + weaponDamage);
