@@ -105,10 +105,15 @@ console.log("6. Exit game");
 console.log("   ");
 
 // get player choice
+
+try{
 let option = readline.questionInt("Enter the number of your choice: ");
 
 
-console.log("   ");
+if(option<1 || option >6){
+    throw new Error ("Please enter number between 1 - 6 ");
+}
+
 
 switch(option) {
     case 1:
@@ -154,7 +159,7 @@ switch(option) {
     default:
         console.log("Invalid option. Please choose again.");
     }
-}
+
 
 if (CurrentLocation === "BLACKSMITH") {
 
@@ -166,9 +171,16 @@ if (CurrentLocation === "BLACKSMITH") {
             console.log("3. Exit the game");
             console.log("   ");
 
-            
+            try{
+
+
             let choice= readline.questionInt("Please choose an option: ");
-            console.log("   ");
+
+                if(choice <1 || choice> 4){
+                    throw new Error ("Invalide choise please enter number between 1 - 4 ");
+
+                }
+
             if (choice === 1) {
                 console.log("return to village");
                 firstVisit = false;
@@ -183,6 +195,9 @@ if (CurrentLocation === "BLACKSMITH") {
             }else{
                 console.log("Invalid option. Please choose again.");
             }
+        }catch(error){
+            console.log("erro"+error.message);
+        }
       
  }  else if (CurrentLocation === "MARKET") {
     console.log("You are at the market. You can buy supplies here.");
@@ -194,7 +209,15 @@ if (CurrentLocation === "BLACKSMITH") {
             console.log("3. Exit the game");
             console.log("   ");
 
+            try {
+
             let choice= readline.questionInt("Please choose an option: ");
+
+                  if(choice<1 || choice >3){
+                    throw new Error ("Inviled choice please choose a number between 1 - 3");
+                }
+
+
             console.log("   ");
             if (choice === 1) {
                 console.log("return to village");
@@ -208,6 +231,11 @@ if (CurrentLocation === "BLACKSMITH") {
                 console.log("exit the game");
                 gameRunning =false;
             }
+
+        }catch(error){
+            console.log("Error"+ error.message);
+
+        }
         }else if (CurrentLocation === "FOREST") {
             console.log("You are in the forest. Be careful of monsters!");
             
@@ -232,12 +260,25 @@ if (CurrentLocation === "BLACKSMITH") {
 
         }
 
-        
+          // Check if player died
+    if (playerHealth <= 0) {
+        console.log("\nGame Over! Your health reached 0!");
+        gameRunning = false;
+    }
+} catch (error) {
+    console.log("Error: " + error.message);
+}
+
+}
+}
+
+
+      
 
 
         
 
- } 
+ 
           
           
 
