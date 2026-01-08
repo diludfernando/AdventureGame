@@ -66,7 +66,9 @@ function showLocation() {
    
    if (currentLocation === "village") {
        console.log("You're in a bustling village. The blacksmith and market are nearby.");
+       console.log("   ");
        console.log("\nWhat would you like to do?");
+       console.log("   ");
        console.log("1: Go to blacksmith");
        console.log("2: Go to market");
        console.log("3: Enter forest");

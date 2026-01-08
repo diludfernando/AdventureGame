@@ -28,21 +28,25 @@ let hasPotion = false;
 let hasArmor = false;
 
 
+// =============================
+// Display Functions
+// =============================
 function displayStats() {
     console.log("Player Name: "+playerName);
     console.log("Health: " + playerHealth);
     console.log("Gold: " + playerGold);
     console.log("Location: " + currentLocation);
-   
 }
 
+// =============================
+// Inventory Functions
+// =============================
 function checkInventory() {
    console.log("\n=== INVENTORY ===");
    if (!hasWeapon && !hasPotion && !hasArmor) {
        console.log("Your inventory is empty!");
        return;
    }
-   
    if (hasWeapon) console.log("- Sword");
    if (hasPotion) console.log("- Health Potion");
    if (hasArmor) console.log("- Shield");
@@ -51,17 +55,17 @@ function checkInventory() {
 
 function displayInventory() {
     for (let slot = 1; slot <= 3; slot++) {
-                console.log("Checking item slot " + slot + "...");
-                if (slot === 1 && hasWeapon) {
-                    console.log("Found: Sword");
-                } else if (slot === 2 && hasPotion) {
-                    console.log("Found: Health Potion");
-                } else if (slot === 3 && hasArmor) {
-                    console.log("Found: Shield");
-                } else {
-                    console.log("Empty slot");
-                }
-            }
+        console.log("Checking item slot " + slot + "...");
+        if (slot === 1 && hasWeapon) {
+            console.log("Found: Sword");
+        } else if (slot === 2 && hasPotion) {
+            console.log("Found: Health Potion");
+        } else if (slot === 3 && hasArmor) {
+            console.log("Found: Shield");
+        } else {
+            console.log("Empty slot");
+        }
+    }
 }
 
 
@@ -96,6 +100,9 @@ playerName= readline.question("What is your name, adventurer? :  ");
     console.log("   ");
 
 
+// =============================
+// Location & Movement Functions
+// =============================
 function showLocation(){
 
         console.log("\n=== " + currentLocation.toUpperCase() + " ===");
@@ -130,9 +137,7 @@ function showLocation(){
 
 
 function move(choiceNum){
-    
     let validMove = false;
-    
     if (currentLocation === "village") {
         if (choiceNum === 1) {
             currentLocation = "blacksmith";
@@ -149,13 +154,14 @@ function move(choiceNum){
             console.log("\nYou venture into the forest...");
             validMove = true;
         }
-
-
     }
-return validMove;
+    return validMove;
 }
 
 
+// =============================
+// Combat Functions
+// =============================
 function handleCombat(){
     if(hasWeapon){
         console.log("You have a sword! You attack!");
@@ -168,22 +174,50 @@ function handleCombat(){
     }  
 }
 
+// =============================
+// Utility Functions
+// =============================
 function updateHealth(amount){
-playerHealth +=amount;
-
-if (playerHealth > 100){
-    playerHealth = 100;
-    console.log("You're at full health ");
+    playerHealth +=amount;
+    if (playerHealth > 100){
+        playerHealth = 100;
+        console.log("You're at full health ");
+    }
+    if(playerHealth<0){
+        playerHealth = 0;
+        console.log("You're gravely wounded!");
+    }
+    console.log("Health is now: "+ playerHealth);
+    return playerHealth
 }
 
-if(playerHealth<0){
-    playerHealth = 0;
-    console.log("You're gravely wounded!");
 
-}
-
-console.log("Health is now: "+ playerHealth);
-return playerHealth
+function showhelp(){
+        console.log("\n=== AVAILABLE COMMANDS ===");
+    
+    console.log("\nMovement Commands:");
+    console.log("- In the village, choose 1-3 to travel to different locations");
+    console.log("- In other locations, choose the return option to go back to the village");
+    
+    console.log("\nBattle Information:");
+    console.log("- You need a sword to win battles");
+    console.log("- Monsters appear in the forest");
+    console.log("- Without a weapon, you'll lose health when retreating");
+    
+    console.log("\nItem Usage:");
+    console.log("- Health potions restore 30 health");
+    console.log("- You can buy potions at the market for 5 gold");
+    console.log("- You can buy a sword at the blacksmith for 10 gold");
+    
+    console.log("\nOther Commands:");
+    console.log("- Choose the status option to see your health and gold");
+    console.log("- Choose the help option to see this message again");
+    console.log("- Choose the quit option to end the game");
+    
+    console.log("\nTips:");
+    console.log("- Keep healing potions for dangerous areas");
+    console.log("- Defeat monsters to earn gold");
+    console.log("- Health can't go above 100");
 
 
 }
