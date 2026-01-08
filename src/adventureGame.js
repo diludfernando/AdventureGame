@@ -52,24 +52,6 @@ function checkInventory() {
    if (hasArmor) console.log("- Shield");
 }
 
-
-function displayInventory() {
-    for (let slot = 1; slot <= 3; slot++) {
-        console.log("Checking item slot " + slot + "...");
-        if (slot === 1 && hasWeapon) {
-            console.log("Found: Sword");
-        } else if (slot === 2 && hasPotion) {
-            console.log("Found: Health Potion");
-        } else if (slot === 3 && hasArmor) {
-            console.log("Found: Shield");
-        } else {
-            console.log("Empty slot");
-        }
-    }
-}
-
-
-
 let weaponDamage=0;
 console.log("Weapon Damage: " + weaponDamage);
 console.log("When you buy a sword, weapon damage will increase to 10!");
