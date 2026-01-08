@@ -70,17 +70,6 @@ let playTimes= true
 console.log("Current Location: " + trackLocation);
 console.log("Playing First Time: " + playTimes);
 
-console.log("=================================");
-console.log("       The Dragon's Quest        ");
-console.log("=================================");
-console.log("\nYour quest: Defeat the dragon in the mountains!");
-
-// get player name
-playerName= readline.question("What is your name, adventurer? :  ");
-    console.log("Welcome, " + playerName + "! Your adventure begins now.");
-    console.log("You starts with "+playerGold+" gold.");
-    console.log("   ");
-
 
 // =============================
 // Location & Movement Functions
@@ -173,6 +162,14 @@ function updateHealth(amount){
     return playerHealth
 }
 
+// ===========================
+// Help System
+// Provides information about available commands
+// ===========================
+
+/**
+ * Shows all available game commands and how to use them
+ */
 
 function showhelp(){
         console.log("\n=== AVAILABLE COMMANDS ===");
@@ -200,15 +197,60 @@ function showhelp(){
     console.log("- Keep healing potions for dangerous areas");
     console.log("- Defeat monsters to earn gold");
     console.log("- Health can't go above 100");
+}
+
+//==============================
+// Shopping Functions
+// Fucntions that handles buying items
+//==============================
 
 
+// Handle blacksmith
+function buyFromBlacksmith(){
+    if(playerGold>=10){
+        console.log("\nBlacksmith: 'A fine blade for a brave adventurer!'");
+        playerGold-=10;
+        hasWeapon = true;
+        console.log("You bought a sword for 10 gold!");
+        console.log("Gold remaining: " + playerGold);
+    }else {
+        console.log("\nBlacksmith: 'Come back when you have more gold!'");
+    }
+}
+
+// Handle Market
+function buyFromMarket(){
+    if(playerGold>=5){
+         console.log("\nMerchant: 'This potion will heal your wounds!'");
+        playerGold -= 5;
+        hasPotion = true;
+        console.log("You bought a health potion for 5 gold!");
+        console.log("Gold remaining: " + playerGold);
+    } else {
+        console.log("\nMerchant: 'No gold, no potion!'");
+    }
 }
 
 
-// Main game loop
+
+// ===========================
+// Main Game Loop
+// Controls the flow of the game
+// ===========================
+
+console.log("=================================");
+console.log("       The Dragon's Quest        ");
+console.log("=================================");
+console.log("\nYour quest: Defeat the dragon in the mountains!");
+
+// get player name
+playerName= readline.question("What is your name, adventurer? :  ");
+    console.log("Welcome, " + playerName + "! Your adventure begins now.");
+    console.log("You starts with "+playerGold+" gold.");
+    console.log("   ");
+
 while(gameRunning){
 showLocation();
-displayStats();
 
 let validChoice = false;
 
