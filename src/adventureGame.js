@@ -28,6 +28,9 @@ let hasPotion = false;
 let hasArmor = false;
 
 
+
+
+
 // =============================
 // Display Functions
 // =============================
@@ -36,6 +39,16 @@ function displayStats() {
     console.log("Health: " + playerHealth);
     console.log("Gold: " + playerGold);
     console.log("Location: " + currentLocation);
+
+
+    console.log("Inventory items: ");
+    if(inventory.length===0){
+        console.log("Inventory is Empty!");
+    }else{
+        inventory.forEach((item,index) =>{
+            console.log("   "+(index +1)+ ". "+item);
+        });
+    }
 }
 
 // =============================
@@ -94,7 +107,10 @@ function showLocation(){
         console.log("1: Return to village");
         console.log("2: Check status");
         console.log("3: Check inventory");
-        console.log("4: Quit game");
+        console.log("4: Buy a Sword (10 gold)");
+        console.log("5: Help");
+        console.log("6: Use items");
+        console.log("7: Quit game");
     }
     else if (currentLocation === "market") {
         console.log("Merchants sell their wares from colorful stalls. A potion seller catches your eye.");
@@ -162,6 +178,23 @@ function updateHealth(amount){
     return playerHealth
 }
 
+function useitems(){
+ // Updated to use inventory array
+    if (inventory.includes("potion")) {
+        console.log("You drink the healing potion.");
+        updateHealth(30);
+        
+        // Remove the potion from inventory
+        let potionIndex = inventory.indexOf("potion");
+        inventory.splice(potionIndex, 1);
+        
+        return true;
+    }
+    console.log("You don't have any usable items!");
+    return false;
+
+}
+
 // ===========================
 // Help System
 // Provides information about available commands
@@ -210,7 +243,10 @@ function buyFromBlacksmith(){
     if(playerGold>=10){
         console.log("\nBlacksmith: 'A fine blade for a brave adventurer!'");
         playerGold-=10;
-        hasWeapon = true;
+        if(hasWeapon = true){
+            inventory.push("sword");
+        }
+        
         console.log("You bought a sword for 10 gold!");
         console.log("Gold remaining: " + playerGold);
     }else {
@@ -223,7 +259,9 @@ function buyFromMarket(){
     if(playerGold>=5){
          console.log("\nMerchant: 'This potion will heal your wounds!'");
         playerGold -= 5;
-        hasPotion = true;
+        if(hasPotion = true){
+            inventory.push("potion");
+        }
         console.log("You bought a health potion for 5 gold!");
         console.log("Gold remaining: " + playerGold);
     } else {
@@ -293,7 +331,7 @@ while(!validChoice){
                 }
             }
             else if (currentLocation === "blacksmith" || currentLocation === "market") {
-                if (choiceNum < 1 || choiceNum > 4) {
+                if (choiceNum < 1 || choiceNum > 8) {
                     throw "Please enter a number between 1 and 4.";
                 }
                 
@@ -309,8 +347,15 @@ while(!validChoice){
                 }
                 else if (choiceNum === 3) {
                     checkInventory();
+                }else if(choiceNum ===4){
+                    buyFromBlacksmith();
+
+                }else if(choiceNum === 5){
+                    showhelp();
+                }else if (choiceNum === 6){
+                    useitems();
                 }
-                else if (choiceNum === 4) {
+                else if (choiceNum === 7) {
                     gameRunning = false;
                     console.log("\nThanks for playing!");
                 }
