@@ -149,16 +149,26 @@ function move(choiceNum){
 // =============================
 // Combat Functions
 // =============================
-function handleCombat(){
-    if(hasWeapon){
-        console.log("You have a sword! You attack!");
-        console.log("Victory! You founf 10 gold!")
-        playerGold+=10;
+
+function hasItemType(){
+    return inventory.some(item => item.type=== type);
+}
+
+function handleCombat() {
+   
+    if (hasItemType("weapon")) {
+        // Find the weapon to get its properties
+        let weapon = inventory.find(item => item.type === "weapon");
+        console.log("You attack with your " + weapon.name + "!");
+        console.log("You deal " + weapon.effect + " damage!");
+        console.log("Victory! You found 10 gold!");
+        playerGold += 10;
         return true;
-    }else {
-        console.log("Witohut a weapon, you must retreat!")
+    } else {
+        console.log("Without a weapon, you must retreat!");
         updateHealth(-20);
-    }  
+        return false;
+    }
 }
 
 // =============================
@@ -242,9 +252,9 @@ function showhelp(){
 function buyFromBlacksmith(){
     if(playerGold>=10){
         console.log("\nBlacksmith: 'A fine blade for a brave adventurer!'");
-        playerGold-=10;
+        playerGold-=sword.value;
         if(hasWeapon = true){
-            inventory.push("sword");
+            inventory.push({...sword});
         }
         
         console.log("You bought a sword for 10 gold!");
@@ -258,16 +268,37 @@ function buyFromBlacksmith(){
 function buyFromMarket(){
     if(playerGold>=5){
          console.log("\nMerchant: 'This potion will heal your wounds!'");
-        playerGold -= 5;
+        playerGold -=healthPotion.value;
         if(hasPotion = true){
-            inventory.push("potion");
+            inventory.push({...healthPotion});
         }
-        console.log("You bought a health potion for 5 gold!");
+        console.log("You bought a " + healthPotion.name + " for " + healthPotion.value + " gold!");
         console.log("Gold remaining: " + playerGold);
     } else {
         console.log("\nMerchant: 'No gold, no potion!'");
     }
 }
+
+
+// =====================================
+// Enhanced Item System
+// =====================================
+
+const healthPotion = {
+    name : "Health Potion",
+    type: "potion",
+    value: 5,
+    effect: 30,
+    description: "Restores 30 health points"
+};
+
+const sword = {
+    name: "Sword",
+    type: "weapon",
+    value: 10,    // Cost in gold
+    effect: 10,   // Damage amount
+    description: "A sturdy blade for combat"
+};
 
 
 
